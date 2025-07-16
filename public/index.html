@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Resume Builder</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>AI Resume Builder</h1>
+            <p>Create professional resumes with AI assistance</p>
+        </header>
+
+        <div class="resume-builder">
+            <div class="form-section">
+                <div class="section" data-section="personal">
+                    <h2>Personal Information</h2>
+                    <div class="input-group">
+                        <input type="text" id="fullName" placeholder="Full Name" class="ai-enhanced">
+                        <button class="ai-btn" data-target="fullName">✨</button>
+                    </div>
+                    <div class="input-group">
+                        <input type="email" id="email" placeholder="Email">
+                    </div>
+                    <div class="input-group">
+                        <input type="tel" id="phone" placeholder="Phone">
+                    </div>
+                    <div class="input-group">
+                        <textarea id="summary" placeholder="Professional Summary" class="ai-enhanced"></textarea>
+                        <button class="ai-btn" data-target="summary">✨</button>
+                    </div>
+                </div>
+
+                <div class="section" data-section="experience">
+                    <h2>Work Experience</h2>
+                    <div id="experienceList">
+                        <div class="experience-item">
+                            <div class="input-group">
+                                <input type="text" placeholder="Job Title" class="ai-enhanced">
+                                <button class="ai-btn">✨</button>
+                            </div>
+                            <input type="text" placeholder="Company">
+                            <div class="date-range">
+                                <input type="text" placeholder="Start Date">
+                                <input type="text" placeholder="End Date">
+                            </div>
+                            <div class="input-group">
+                                <textarea placeholder="Job Description & Achievements" class="ai-enhanced"></textarea>
+                                <button class="ai-btn">✨</button>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="addExperience" class="add-btn">+ Add Experience</button>
+                </div>
+
+                <div class="section" data-section="skills">
+                    <h2>Skills</h2>
+                    <div class="input-group">
+                        <textarea id="skills" placeholder="List your skills (comma separated)" class="ai-enhanced"></textarea>
+                        <button class="ai-btn" data-target="skills">✨</button>
+                    </div>
+                </div>
+
+                <div class="section" data-section="education">
+                    <h2>Education</h2>
+                    <div class="input-group">
+                        <input type="text" placeholder="Degree" class="ai-enhanced">
+                        <button class="ai-btn">✨</button>
+                    </div>
+                    <input type="text" placeholder="Institution">
+                    <input type="text" placeholder="Graduation Year">
+                </div>
+            </div>
+
+            <div class="preview-section">
+                <div class="preview-header">
+                    <h2>Resume Preview</h2>
+                    <button id="downloadBtn" class="download-btn">Download PDF</button>
+                </div>
+                <div id="resumePreview" class="resume-preview">
+                    <!-- Resume preview will be generated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="aiModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>AI Enhancement</h3>
+            <div class="ai-suggestions">
+                <div class="loading">Generating suggestions...</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
