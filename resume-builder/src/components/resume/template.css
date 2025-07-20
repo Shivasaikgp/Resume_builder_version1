@@ -1,0 +1,237 @@
+/* Resume Template Styles */
+
+.resume-template {
+  max-width: 8.5in;
+  margin: 0 auto;
+  padding: 0.75in;
+  background: white;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  font-family: system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+  color: #1f2937;
+}
+
+/* Layout Styles */
+.layout-single-column {
+  display: block;
+}
+
+.layout-multi-column .resume-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.columns-1 {
+  display: block;
+}
+
+.columns-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+/* Spacing Styles */
+.spacing-compact {
+  line-height: 1.3;
+}
+
+.spacing-compact .resume-header {
+  margin-bottom: 1rem;
+}
+
+.spacing-compact .experience-section,
+.spacing-compact .education-section,
+.spacing-compact .skills-section,
+.spacing-compact .projects-section,
+.spacing-compact .custom-section {
+  margin-bottom: 1rem;
+}
+
+.spacing-compact .experience-item,
+.spacing-compact .education-item,
+.spacing-compact .project-item {
+  margin-bottom: 0.75rem;
+}
+
+.spacing-normal {
+  line-height: 1.5;
+}
+
+.spacing-normal .resume-header {
+  margin-bottom: 1.5rem;
+}
+
+.spacing-relaxed {
+  line-height: 1.6;
+}
+
+.spacing-relaxed .resume-header {
+  margin-bottom: 2rem;
+}
+
+.spacing-relaxed .experience-section,
+.spacing-relaxed .education-section,
+.spacing-relaxed .skills-section,
+.spacing-relaxed .projects-section,
+.spacing-relaxed .custom-section {
+  margin-bottom: 2rem;
+}
+
+.spacing-relaxed .experience-item,
+.spacing-relaxed .education-item,
+.spacing-relaxed .project-item {
+  margin-bottom: 1.5rem;
+}
+
+/* Header Styles */
+.header-minimal .personal-info-section h1 {
+  font-size: 1.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.header-minimal .contact-info {
+  font-size: 0.75rem;
+}
+
+.header-standard .personal-info-section h1 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.header-standard .contact-info {
+  font-size: 0.875rem;
+}
+
+.header-prominent .personal-info-section h1 {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+  text-align: center;
+}
+
+.header-prominent .contact-info {
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.header-prominent .contact-row {
+  justify-content: center;
+}
+
+/* Contact Info Styles */
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.contact-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+.contact-item {
+  display: inline-block;
+}
+
+.contact-row.links {
+  margin-top: 0.25rem;
+}
+
+/* Section Styles */
+.experience-section h2,
+.education-section h2,
+.skills-section h2,
+.projects-section h2,
+.custom-section h2 {
+  font-size: 1.125rem;
+  font-weight: bold;
+  margin-bottom: 0.75rem;
+  border-bottom: 2px solid;
+  padding-bottom: 0.25rem;
+}
+
+/* List Styles */
+.experience-item ul,
+.project-item ul {
+  margin: 0;
+  padding-left: 1.25rem;
+  list-style-type: disc;
+}
+
+.experience-item li,
+.project-item li {
+  margin-bottom: 0.25rem;
+}
+
+/* Skills Section Styles */
+.skills-item {
+  margin-bottom: 0.75rem;
+}
+
+.skills-item:last-child {
+  margin-bottom: 0;
+}
+
+/* Print Styles */
+@media print {
+  .resume-template {
+    box-shadow: none;
+    padding: 0.5in;
+    margin: 0;
+    max-width: none;
+  }
+  
+  .layout-multi-column .resume-content {
+    gap: 1rem;
+  }
+  
+  .columns-2 {
+    gap: 1rem;
+  }
+  
+  .spacing-compact {
+    line-height: 1.2;
+  }
+  
+  .spacing-normal {
+    line-height: 1.4;
+  }
+  
+  .spacing-relaxed {
+    line-height: 1.5;
+  }
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .resume-template {
+    padding: 1rem;
+    margin: 1rem;
+  }
+  
+  .layout-multi-column .resume-content {
+    display: block;
+  }
+  
+  .columns-2 {
+    display: block;
+  }
+  
+  .header-prominent .personal-info-section h1 {
+    font-size: 1.5rem;
+  }
+  
+  .contact-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .header-prominent .contact-row {
+    align-items: center;
+  }
+}

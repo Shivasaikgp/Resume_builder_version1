@@ -1,0 +1,59 @@
+{
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "regions": ["iad1"],
+  "functions": {
+    "src/app/api/**/*.ts": {
+      "maxDuration": 30
+    }
+  },
+  "env": {
+    "DATABASE_URL": "@database_url",
+    "NEXTAUTH_SECRET": "@nextauth_secret",
+    "NEXTAUTH_URL": "@nextauth_url",
+    "OPENAI_API_KEY": "@openai_api_key",
+    "ANTHROPIC_API_KEY": "@anthropic_api_key",
+    "REDIS_URL": "@redis_url",
+    "OPENAI_MODEL": "@openai_model",
+    "ANTHROPIC_MODEL": "@anthropic_model",
+    "AI_REQUESTS_PER_MINUTE": "@ai_requests_per_minute",
+    "AI_REQUESTS_PER_HOUR": "@ai_requests_per_hour",
+    "AI_CONCURRENT_REQUESTS": "@ai_concurrent_requests",
+    "AI_FALLBACK_ENABLED": "@ai_fallback_enabled",
+    "AI_RETRY_ATTEMPTS": "@ai_retry_attempts",
+    "AI_RETRY_DELAY": "@ai_retry_delay",
+    "NODE_ENV": "production"
+  },
+  "build": {
+    "env": {
+      "DATABASE_URL": "@database_url"
+    }
+  },
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET, POST, PUT, DELETE, OPTIONS"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "Content-Type, Authorization"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/health",
+      "destination": "/api/health"
+    }
+  ]
+}

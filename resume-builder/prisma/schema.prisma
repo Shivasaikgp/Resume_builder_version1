@@ -25,6 +25,7 @@ model User {
   sessions    Session[]
   resumes     Resume[]
   userContext UserContext?
+  aiFeedback  AIFeedback[]
 
   @@map("users")
 }
@@ -108,4 +109,43 @@ model ResumeAnalysis {
   resume Resume @relation(fields: [resumeId], references: [id], onDelete: Cascade)
 
   @@map("resume_analyses")
+}
+
+model AIFeedback {
+  id        String   @id @default(cuid())
+  userId    String   @map("user_id")
+  type      String   // 'suggestion', 'analysis', 'general'
+  rating    Int      // 1-5 rating
+  comment   String?  // Optional comment
+  context   Json     // Flexible context data
+  createdAt DateTime @default(now()) @map("created_at")
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([type])
+  @@index([rating])
+  @@index([createdAt])
+  @@map("ai_feedback")
+}
+
+model ErrorLog {
+  id          String   @id @default(cuid())
+  userId      String?  @map("user_id")
+  errorType   String   @map("error_type")
+  errorCode   String?  @map("error_code")
+  message     String
+  stack       String?
+  context     Json     @default("{}")
+  resolved    Boolean  @default(false)
+  resolvedAt  DateTime? @map("resolved_at")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  @@index([userId])
+  @@index([errorType])
+  @@index([errorCode])
+  @@index([resolved])
+  @@index([createdAt])
+  @@map("error_logs")
 }

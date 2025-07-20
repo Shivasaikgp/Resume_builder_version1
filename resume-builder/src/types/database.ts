@@ -133,6 +133,111 @@ export const ResumeAnalysisSchema = z.object({
   improvements: z.array(z.string()),
 })
 
+// Job Description Schema
+export const JobDescriptionSchema = z.object({
+  title: z.string().min(1, 'Job title is required'),
+  company: z.string().min(1, 'Company name is required'),
+  description: z.string().min(10, 'Job description must be at least 10 characters'),
+  requirements: z.array(z.string()).default([]),
+  preferredQualifications: z.array(z.string()).default([]),
+  responsibilities: z.array(z.string()).default([]),
+  location: z.string().optional(),
+  salaryRange: z.string().optional(),
+  benefits: z.array(z.string()).default([])
+})
+
+// Job Analysis Schema
+export const JobAnalysisSchema = z.object({
+  keywords: z.object({
+    technical: z.array(z.string()),
+    soft: z.array(z.string()),
+    industry: z.array(z.string()),
+    tools: z.array(z.string()),
+    certifications: z.array(z.string()),
+    actionVerbs: z.array(z.string()),
+    buzzwords: z.array(z.string())
+  }),
+  requirements: z.object({
+    mustHave: z.array(z.string()),
+    niceToHave: z.array(z.string()),
+    experienceLevel: z.enum(['entry', 'mid', 'senior', 'executive']),
+    yearsRequired: z.number().nullable(),
+    educationLevel: z.string().nullable()
+  }),
+  skills: z.object({
+    technical: z.array(z.object({
+      skill: z.string(),
+      importance: z.enum(['critical', 'important', 'preferred']),
+      found: z.boolean(),
+      alternatives: z.array(z.string()).optional()
+    })),
+    soft: z.array(z.object({
+      skill: z.string(),
+      importance: z.enum(['critical', 'important', 'preferred']),
+      found: z.boolean(),
+      alternatives: z.array(z.string()).optional()
+    })),
+    tools: z.array(z.object({
+      skill: z.string(),
+      importance: z.enum(['critical', 'important', 'preferred']),
+      found: z.boolean(),
+      alternatives: z.array(z.string()).optional()
+    })),
+    missing: z.array(z.string()),
+    priority: z.enum(['high', 'medium', 'low'])
+  }),
+  experience: z.object({
+    relevantExperience: z.array(z.object({
+      jobTitle: z.string(),
+      company: z.string(),
+      relevanceScore: z.number(),
+      matchingResponsibilities: z.array(z.string()),
+      suggestedEnhancements: z.array(z.string())
+    })),
+    missingExperience: z.array(z.string()),
+    transferableSkills: z.array(z.string()),
+    recommendedHighlights: z.array(z.string())
+  }),
+  culture: z.object({
+    values: z.array(z.string()),
+    workStyle: z.array(z.string()),
+    environment: z.string(),
+    teamStructure: z.string()
+  })
+})
+
+// Optimization Suggestions Schema
+export const OptimizationSuggestionsSchema = z.object({
+  keywordOptimization: z.array(z.object({
+    keyword: z.string(),
+    importance: z.enum(['critical', 'important', 'preferred']),
+    suggestedPlacement: z.array(z.string()),
+    currentUsage: z.number(),
+    recommendedUsage: z.number()
+  })),
+  contentEnhancements: z.array(z.object({
+    section: z.string(),
+    type: z.enum(['add', 'modify', 'emphasize']),
+    suggestion: z.string(),
+    reasoning: z.string(),
+    impact: z.enum(['high', 'medium', 'low'])
+  })),
+  structuralChanges: z.array(z.object({
+    type: z.enum(['reorder', 'add_section', 'remove_section', 'merge_sections']),
+    description: z.string(),
+    reasoning: z.string(),
+    effort: z.enum(['low', 'medium', 'high'])
+  })),
+  priorityActions: z.array(z.object({
+    action: z.string(),
+    reasoning: z.string(),
+    impact: z.enum(['high', 'medium', 'low']),
+    effort: z.enum(['low', 'medium', 'high']),
+    order: z.number()
+  })),
+  matchScore: z.number().min(0).max(100)
+})
+
 // TypeScript types derived from schemas
 export type PersonalInfo = z.infer<typeof PersonalInfoSchema>
 export type ExperienceItem = z.infer<typeof ExperienceItemSchema>
@@ -147,6 +252,9 @@ export type UserPreferences = z.infer<typeof UserPreferencesSchema>
 export type UserInteraction = z.infer<typeof UserInteractionSchema>
 export type UserContext = z.infer<typeof UserContextSchema>
 export type ResumeAnalysis = z.infer<typeof ResumeAnalysisSchema>
+export type JobDescription = z.infer<typeof JobDescriptionSchema>
+export type JobAnalysis = z.infer<typeof JobAnalysisSchema>
+export type OptimizationSuggestions = z.infer<typeof OptimizationSuggestionsSchema>
 
 // Database model types (matching Prisma schema)
 export interface User {
